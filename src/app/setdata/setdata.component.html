@@ -1,0 +1,40 @@
+<div>
+  <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
+    <label>Name</label>
+    <input
+      type="text"
+      formControlName="name"
+      name="name"
+      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+    />
+    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+      <div *ngIf="f.name.errors.required">Name is required</div>
+    </div>
+    <br />
+    <label>Age</label>
+    <input
+      type="text"
+      formControlName="age"
+      name="age"
+      [ngClass]="{ 'is-invalid': submitted && f.age.errors }"
+    />
+    <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+      <div *ngIf="f.age.errors.required">Age is required</div>
+      <div *ngIf="f.age.errors.pattern">Pattern Error</div>
+    </div>
+    <br />
+    <label>Mobile</label>
+    <input
+      type="text"
+      formControlName="mobile"
+      name="mobile"
+      [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"
+    />
+    <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+      <div *ngIf="f.mobile.errors.required">Mobile is required</div>
+      <div *ngIf="f.mobile.errors.pattern">Pattern Error</div>
+    </div>
+    <br />
+    <button type="submit">submit</button>
+  </form>
+</div>
