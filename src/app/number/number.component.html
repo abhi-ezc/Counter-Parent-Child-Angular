@@ -1,5 +1,5 @@
 <div>
-  <label>{{ value }}</label>
+  <label>{{ (value===0&&"Zero")||(value!=0&&value) }}</label>
   <button (click)="onIncrementClick()">{{ addBtnName }}</button>
   <button (click)="onDecrementClick()">{{ minusBtnName }}</button>
   <button (click)="onRemoveClick()">{{ deleteBtnName }}</button>
