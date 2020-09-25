@@ -39,7 +39,7 @@ export class GetdataComponent implements OnInit, AfterViewInit {
   }
 
   createComponentController(i = (this.temp.length - 1)) {
-    console.log("create : " + i);
+    // console.log("create : " + i);
 
     let resolver = this.componentFactoryResolver.resolveComponentFactory(NumberComponent);
     let numComp = this.vf.createComponent(resolver);
@@ -50,7 +50,7 @@ export class GetdataComponent implements OnInit, AfterViewInit {
     //subscribed the onIncrement event
     numComp.instance.onIncrement.subscribe(data => {
 
-      console.log("increment : " + data);
+      // console.log("increment : " + data);
 
       numComp.instance.value = this.temp[this.onItemIncrement(data)].value;
 
@@ -75,7 +75,11 @@ export class GetdataComponent implements OnInit, AfterViewInit {
 
   onCreateLoad() {
 
-    let i = this.temp[this.temp.length - 1].id + 1;
+    let i;
+    if (this.temp.length == 0)
+      i = 0
+    else
+      i = this.temp[this.temp.length - 1].id + 1;
     this.temp.push({
       id: i,
       value: 0
