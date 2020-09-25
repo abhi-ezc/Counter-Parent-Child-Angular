@@ -5,6 +5,7 @@ import {
   Input,
   OnInit,
   Output,
+  ChangeDetectorRef
 } from '@angular/core';
 @Injectable()
 @Component({
@@ -16,7 +17,7 @@ export class NumberComponent implements OnInit {
   public addBtnName = '+';
   public minusBtnName = '-';
   public deleteBtnName = 'x';
-
+  public flag = false;
   @Input() id: number;
   @Input() value: number;
   @Output() onRemove: EventEmitter<number> = new EventEmitter<
@@ -28,12 +29,15 @@ export class NumberComponent implements OnInit {
   @Output() onIncrement: EventEmitter<number> = new EventEmitter<
     number
   >();
-  constructor() {
 
+  constructor(
+    private cd: ChangeDetectorRef
+  ) {
+    this.flag = false;
   }
 
+
   ngOnInit(): void {
-    console.log(this.id);
   }
 
   onIncrementClick() {

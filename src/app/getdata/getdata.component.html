@@ -2,11 +2,8 @@
   <div class="add"></div>
   <div class="list">
     {{(temp.length===0&&"Empty List")||(temp.length!==0&&"Here is the list")}}
-    <ul>
-      <li *ngFor="let i of temp">
-        <app-number [id]=i.id [value]=i.value (onIncrement)="onItemIncrement($event)"
-          (onDecrement)="onItemDecrement($event)" (onRemove)="onItemRemove($event)"></app-number>
-      </li>
-    </ul>
+    <div #vf>
+    </div>
+    <button (click)="onCreateLoad()">ADD</button>
   </div>
 </div>
