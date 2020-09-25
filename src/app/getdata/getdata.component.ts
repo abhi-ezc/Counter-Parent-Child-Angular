@@ -38,7 +38,9 @@ export class GetdataComponent implements OnInit, AfterViewInit {
     }
   }
 
-  createComponentController(i) {
+  createComponentController(i = (this.temp.length - 1)) {
+    console.log("create : " + i);
+
     let resolver = this.componentFactoryResolver.resolveComponentFactory(NumberComponent);
     let numComp = this.vf.createComponent(resolver);
 
@@ -47,15 +49,17 @@ export class GetdataComponent implements OnInit, AfterViewInit {
 
     //subscribed the onIncrement event
     numComp.instance.onIncrement.subscribe(data => {
-      this.onItemIncrement(data);
-      numComp.instance.value = this.temp[i].value;
+
+      console.log("increment : " + data);
+
+      numComp.instance.value = this.temp[this.onItemIncrement(data)].value;
 
     });
 
     //subscribed  the onDecrement event
     numComp.instance.onDecrement.subscribe(data => {
-      this.onItemDecrement(data);
-      numComp.instance.value = this.temp[i].value;
+
+      numComp.instance.value = this.temp[this.onItemDecrement(data)].value;
     })
 
     //subscribed to the onRemove event
@@ -71,30 +75,40 @@ export class GetdataComponent implements OnInit, AfterViewInit {
 
   onCreateLoad() {
 
-    let i = this.temp.length;
+    let i = this.temp[this.temp.length - 1].id + 1;
     this.temp.push({
-      id: this.temp.length,
+      id: i,
       value: 0
     });
-    this.createComponentController(i);
+    this.createComponentController();
 
 
 
   }
 
   onItemIncrement(id) {
+    let index = -1;
     this.temp = this.temp.filter(a => {
-      a.id == id ? a.value++ : a.value;
+      if (a.id == id) {
+        index = this.temp.indexOf(a);
+        a.value++
+      }
       return a;
     })
-
+    return index;
   }
+
+
   onItemDecrement(id) {
+    let index = -1;
     this.temp = this.temp.filter(a => {
-      a.id == id ? a.value-- : a.value;
+      if (a.id == id) {
+        index = this.temp.indexOf(a);
+        a.value--;
+      }
       return a;
     })
-    console.log(this.temp);
+    return index;
   }
 
   onItemRemove(id) {

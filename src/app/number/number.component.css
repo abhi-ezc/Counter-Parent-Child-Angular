@@ -1,2 +1,7 @@
-div {
+td{
+    width: 30px;
+}
+
+table{
+    text-align: left;
 }

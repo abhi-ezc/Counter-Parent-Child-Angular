@@ -1,6 +1,11 @@
 <div>
-  <label>{{ (value===0&&"Zero")||(value!=0&&value) }}</label>
-  <button (click)="onIncrementClick()">{{ addBtnName }}</button>
-  <button (click)="onDecrementClick()">{{ minusBtnName }}</button>
-  <button (click)="onRemoveClick()">{{ deleteBtnName }}</button>
+
+  <table>
+    <tr>
+      <td><label>{{ (value===0&&"Zero")||(value!=0&&value) }}</label></td>
+      <td><button (click)="onIncrementClick()">{{ addBtnName }}</button></td>
+      <td><button (click)="onDecrementClick()">{{ minusBtnName }}</button></td>
+      <td><button (click)="onRemoveClick()">{{ deleteBtnName }}</button></td>
+    </tr>
+  </table>
 </div>
